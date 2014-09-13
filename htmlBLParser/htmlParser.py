@@ -1,5 +1,7 @@
 __author__ = 'selver'
-#
+
+import glob
+
 # import html.parser
 #
 # class pyHTMLParse(html.parser.HTMLParser):
@@ -98,7 +100,7 @@ class pyHTMLParse(HTMLParser):
         return line
 
     def getFinal(self):
-        print(self.outputContent)
+        return self.outputContent
 
 
 class ReadHtml:
@@ -117,14 +119,19 @@ class ReadHtml:
 
 
 def main():
-    reader = ReadHtml('/home/selver/PycharmProjects/htmlBLParser/bl63-64.html')
-    reader.parse()
-    parser = pyHTMLParse()
-    parser.feed(reader.file_content)
-    parser.close()
-    parser.getFinal()
+    dir = '/home/selver/PycharmProjects/htmlBLParser/site_results/*.html'
+    all_html_files = glob.glob(dir)
+    print(all_html_files)
+    for f in all_html_files:
+        reader = ReadHtml(f)
+        reader.parse()
+        parser = pyHTMLParse()
+        parser.feed(reader.file_content)
+        parser.close()
+        outputName = f + ".result.txt"
+        o = open(outputName, 'w')
+        o.write(parser.getFinal())
+        o.close()
 
 if __name__ == "__main__":
     main()
-
-
