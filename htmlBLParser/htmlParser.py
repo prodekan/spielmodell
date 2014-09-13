@@ -31,6 +31,7 @@ class pyHTMLParse(HTMLParser):
     g2_first_half = ''
     gotcha = False
     gotchaPlayday = False
+    outputContent = ''
     def __init__(self):
         # initialize the base class
         HTMLParser.__init__(self)
@@ -82,7 +83,7 @@ class pyHTMLParse(HTMLParser):
             self.g1_first_half = str(data)[lbracketIdx+1:colonIdx]
             self.g2_first_half = str(data)[colonIdx+1:rbracketIdx]
             self.gotcha = False
-            print(self.composeLine())
+            self.outputContent += self.composeLine()
 
 
     def handle_startendtag(self, tag, attrs):
@@ -93,8 +94,11 @@ class pyHTMLParse(HTMLParser):
             self.playday = st
 
     def composeLine(self):
-        line = ','.join([self.playday, self.team1, self.team2, self.g1, self.g2, self.g1_first_half, self.g2_first_half])
+        line = ','.join([self.playday, self.team1, self.team2, self.g1, self.g2, self.g1_first_half, self.g2_first_half, '\n'])
         return line
+
+    def getFinal(self):
+        print(self.outputContent)
 
 
 class ReadHtml:
@@ -111,10 +115,6 @@ class ReadHtml:
         self.file_content = self.fd.read()
         self.fd.close()
 
-    def printLineToFile(self, outputLocation, content):
-        wr = open(outputLocation, 'a');
-        wr.write(content)
-
 
 def main():
     reader = ReadHtml('/home/selver/PycharmProjects/htmlBLParser/bl63-64.html')
@@ -122,6 +122,7 @@ def main():
     parser = pyHTMLParse()
     parser.feed(reader.file_content)
     parser.close()
+    parser.getFinal()
 
 if __name__ == "__main__":
     main()
