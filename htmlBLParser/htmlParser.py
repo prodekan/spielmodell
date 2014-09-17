@@ -2,23 +2,9 @@ __author__ = 'selver'
 
 import glob
 
-# import html.parser
-#
-# class pyHTMLParse(html.parser.HTMLParser):
-# def __init__(self):
-#         # initialize the base class
-#         html.HTMLParser.__init__(self)
-#     def handle_starttag(self, tag, attrs):
-#         print ("Encountered a start tag:", tag)
-#     def handle_endtag(self, tag):
-#         print ("Encountered an end tag :", tag)
-#     def handle_data(self, data):
-#         print ("Encountered some data  :", data)
-#
-# parser = pyHTMLParse()
-# parser.feed('<html><head><title>Test</title></head>'
-#             '<body><h1>Parse me!</h1></body></html>')
-#
+import urllib2
+response = urllib2.urlopen('http://www.example.com/')
+html = response.read()
 
 from html.parser import HTMLParser
 

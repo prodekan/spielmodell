@@ -8,6 +8,8 @@ USE `spielmodell` ;
 -- -----------------------------------------------------
 -- Table `spielmodell`.`team`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `spielmodell`.`team` ;
+
 CREATE TABLE IF NOT EXISTS `spielmodell`.`team` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
@@ -22,6 +24,8 @@ COMMENT = 'this is the table mean to hold all different teams';
 -- -----------------------------------------------------
 -- Table `spielmodell`.`league`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `spielmodell`.`league` ;
+
 CREATE TABLE IF NOT EXISTS `spielmodell`.`league` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
@@ -35,6 +39,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `spielmodell`.`country`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `spielmodell`.`country` ;
+
 CREATE TABLE IF NOT EXISTS `spielmodell`.`country` (
   `id` INT NOT NULL,
   `name` VARCHAR(45) NOT NULL,
@@ -46,18 +52,21 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `spielmodell`.`results`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `spielmodell`.`results` ;
+
 CREATE TABLE IF NOT EXISTS `spielmodell`.`results` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `team1` INT NOT NULL,
-  `team2` INT NOT NULL,
+  `playday` VARCHAR(45) NOT NULL,
+  `team1` VARCHAR(64) NOT NULL,
+  `team2` VARCHAR(64) NOT NULL,
   `g1` TINYINT NOT NULL,
   `g2` TINYINT NOT NULL,
+  `g1_half_time` TINYINT NULL,
+  `g2_half_time` TINYINT NULL,
   `team1_table_pos` INT NULL,
   `team2_table_pos` INT NULL,
   `team1_prev_state` TINYINT NULL,
   `team2_prev_state` TINYINT NULL,
-  `g1_half_time` TINYINT NULL,
-  `g2_half_time` TINYINT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -65,6 +74,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `spielmodell`.`states`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `spielmodell`.`states` ;
+
 CREATE TABLE IF NOT EXISTS `spielmodell`.`states` (
   `state_nr` INT NOT NULL,
   `state` TINYTEXT NOT NULL,
