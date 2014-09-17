@@ -2,6 +2,7 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
+DROP SCHEMA IF EXISTS `spielmodell` ;
 CREATE SCHEMA IF NOT EXISTS `spielmodell` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
 USE `spielmodell` ;
 
@@ -62,7 +63,8 @@ CREATE TABLE IF NOT EXISTS `spielmodell`.`results` (
   `g2` TINYINT NOT NULL,
   `g1_half_time` TINYINT NULL,
   `g2_half_time` TINYINT NULL,
-  `saison` VARCHAR(45) NULL,
+  `season` VARCHAR(45) NULL,
+  `flag` VARCHAR(5) NULL,
   `team1_table_pos` INT NULL,
   `team2_table_pos` INT NULL,
   `team1_prev_state` TINYINT NULL,
