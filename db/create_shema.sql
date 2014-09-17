@@ -62,6 +62,7 @@ CREATE TABLE IF NOT EXISTS `spielmodell`.`results` (
   `g2` TINYINT NOT NULL,
   `g1_half_time` TINYINT NULL,
   `g2_half_time` TINYINT NULL,
+  `saison` VARCHAR(45) NULL,
   `team1_table_pos` INT NULL,
   `team2_table_pos` INT NULL,
   `team1_prev_state` TINYINT NULL,

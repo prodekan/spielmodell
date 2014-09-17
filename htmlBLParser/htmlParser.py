@@ -2,13 +2,10 @@ __author__ = 'selver'
 
 import glob
 
-import urllib2
-response = urllib2.urlopen('http://www.example.com/')
-html = response.read()
-
 from html.parser import HTMLParser
 
 class pyHTMLParse(HTMLParser):
+    saison = ''
     playday = ''
     team1 = ''
     team2 = ''
@@ -20,9 +17,10 @@ class pyHTMLParse(HTMLParser):
     gotcha = False
     gotchaPlayday = False
     outputContent = ''
-    def __init__(self):
+    def __init__(self, saison = '0/0'):
         # initialize the base class
         HTMLParser.__init__(self)
+        self.saison = saison
 
     def read(self, data):
         # clear the current output before re-use
@@ -50,7 +48,6 @@ class pyHTMLParse(HTMLParser):
         elif len(attrs) > 0 and len(attrs[0]) > 0:
             if '/spielplan/bundesliga' in str(attrs[0][1]):
                 self.gotchaPlayday = True
-
 
 
     def handle_endtag(self, tag):
@@ -82,7 +79,7 @@ class pyHTMLParse(HTMLParser):
             self.playday = st
 
     def composeLine(self):
-        line = ','.join([self.playday, self.team1, self.team2, self.g1, self.g2, self.g1_first_half, self.g2_first_half, '\n'])
+        line = ','.join([self.playday, self.team1, self.team2, self.g1, self.g2, self.g1_first_half, self.g2_first_half, self.saison, '\n'])
         return line
 
     def getFinal(self):
@@ -111,11 +108,16 @@ def main():
     for f in all_html_files:
         reader = ReadHtml(f)
         reader.parse()
-        parser = pyHTMLParse()
+        last_slash = f.rfind('/')
+        x1 = f.find(' ', last_slash)
+        x1 = x1 + 1
+        x2 = f.find(' ', x1)
+        saison = f[x1:x1+4] + '/' + f[x1+5:x1+9]
+        parser = pyHTMLParse(saison)
         parser.feed(reader.file_content)
         parser.close()
-        outputName = f + ".result.txt"
-        o = open(outputName, 'w')
+        outputName = "/home/selver/PycharmProjects/htmlBLParser/bundesliga1.csv"
+        o = open(outputName, 'a')
         o.write(parser.getFinal())
         o.close()
 
