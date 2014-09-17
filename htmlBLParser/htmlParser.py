@@ -41,9 +41,9 @@ class pyHTMLParse(HTMLParser):
                     print('Something is wrong')
                     return
                 idx = idx + len('Spielschema') + 1
-                hyphenIdx = str(attrs[1][1]).find('-', idx)
+                hyphenIdx = str(attrs[1][1]).find(' - ', idx)
                 self.team1 = str(attrs[1][1])[idx:hyphenIdx].strip()
-                self.team2 = str(attrs[1][1])[hyphenIdx+1:].strip()
+                self.team2 = str(attrs[1][1])[hyphenIdx+3:].strip()
 
         elif len(attrs) > 0 and len(attrs[0]) > 0:
             if '/spielplan/bundesliga' in str(attrs[0][1]):
