@@ -64,14 +64,16 @@ CREATE TABLE IF NOT EXISTS `spielmodell`.`results` (
   `g1_half_time` TINYINT NULL,
   `g2_half_time` TINYINT NULL,
   `season` VARCHAR(45) NULL,
-  `flag` VARCHAR(5) NULL,
+  `flag_team1` VARCHAR(45) NULL,
+  `flag_team2` VARCHAR(5) NULL,
   `team1_table_pos` INT NULL,
   `team2_table_pos` INT NULL,
   `team1_prev_state` TINYINT NULL,
   `team2_prev_state` TINYINT NULL,
   `id` INT NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`))
-ENGINE = InnoDB;
+ENGINE = InnoDB
+COMMENT = 'This is the big, transaction table where all the results are /* comment truncated */ /* put into.*/';
 
 
 -- -----------------------------------------------------

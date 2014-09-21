@@ -3,6 +3,10 @@ __author__ = 'selver'
 import glob
 
 from html.parser import HTMLParser
+import urllib
+
+import urllib.request
+import urllib.error
 
 class pyHTMLParse(HTMLParser):
     saison = ''
@@ -102,9 +106,27 @@ class ReadHtml:
 
 
 def main():
+    list_of_links = list()
+    liga = '2-bundesliga'
+    season = '2013-2014'
+    link = 'http://www.weltfussball.de/alle_spiele/'
+    s1 = int(season[:4])
+    s2 = int(season[5:9])
+
+    for i in range(1,50):
+        link = link + liga + '-'
+
+        link = link + season
+        s1 -= 1
+        s2 -= 1
+
+    url =  urllib.request.urlopen(link)
+    s = url.read()
+
     dir = '/home/selver/PycharmProjects/htmlBLParser/site_results/*.html'
     all_html_files = glob.glob(dir)
     print(all_html_files)
+
     for f in all_html_files:
         reader = ReadHtml(f)
         reader.parse()
