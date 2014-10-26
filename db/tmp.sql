@@ -31,4 +31,4 @@ where
 season = '2003/2004'
 and playday in ('2. Spieltag') and team2 like '%Bayern%';
 
-select distinct flag_team1 from results;
+desc results;
