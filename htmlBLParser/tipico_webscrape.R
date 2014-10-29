@@ -1,6 +1,9 @@
 library(XML)
-connectToSite <- function(url = "https://www.tipico.de/en/online-sports-betting/football/germany/bundesliga/g42301/")
+connectToSite <- function()
 {
-  htmlP = htmlTreeParse(url, useInternalNodes = T);
-  xpathSApply(htmlP, "//title", xmlValue)
+  setwd('/home/selver/PycharmProjects/htmlBLParser/');
+  htmlP <- htmlTreeParse(file = 'tipico_bl1.html', useInternalNodes = T);
+  title <- xpathApply(htmlP, "//title", xmlValue);
+
 }
+
