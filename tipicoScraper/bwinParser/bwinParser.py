@@ -19,7 +19,6 @@ class pyHTMLParse(HTMLParser):
     currQ2 = 0
     outputContent = ''
     currTag = ''
-    currAttr =[]
     def __init__(self):
         HTMLParser.__init__(self)
 
@@ -32,18 +31,20 @@ class pyHTMLParse(HTMLParser):
         return ''.join(self._lines)
 
     def handle_starttag(self, tag, attrs):
-        print(tag, attrs)
-        print(attrs[0])
-        self.currTag = tag
+        if len(attrs) > 0 and len(attrs[0]) > 0 and tag == 'h2' and attrs[0][1] == 'event-group-level1':
+            self.currTag = tag
+
 
     def handle_endtag(self, tag):
-        print(tag)
-
-    def handle_data(self, data):
         pass
 
+    def handle_data(self, data):
+        if self.currTag != '':
+            print(data.strip())
+            self.currTag = ''
+
     def handle_startendtag(self, tag, attrs):
-        print('handle_startendtag')
+        pass
 
     def newPlayDay(self, st):
         pass
@@ -68,8 +69,6 @@ class ReadHtml:
         except IOError:
             print ('error reading file:', self.file_location)
             self.fd.close()
-        finally:
-            print('finally')
         self.fd.close()
 
 def main():
