@@ -10,6 +10,8 @@ import urllib.request
 import urllib.error
 
 class pyHTMLParse(HTMLParser):
+    currLeague = ''
+    currCountry = ''
     currPlayDay = ''
     currPlayTime = ''
     currTeam1 = ''
@@ -17,6 +19,7 @@ class pyHTMLParse(HTMLParser):
     currQ1 = 0
     currQX = 0
     currQ2 = 0
+    currRow = ''
     outputContent = ''
     currTag = ''
     def __init__(self):
@@ -31,26 +34,59 @@ class pyHTMLParse(HTMLParser):
         return ''.join(self._lines)
 
     def handle_starttag(self, tag, attrs):
-        if len(attrs) > 0 and len(attrs[0]) > 0 and tag == 'h2' and attrs[0][1] == 'event-group-level1':
+        if tag == 'h2' and len(attrs) > 0 and len(attrs[0]) > 0 and attrs[0][1] == 'event-group-level1':
             self.currTag = tag
+            self.currPlayDay = '?'
+        if tag == 'a' and len(attrs) > 0 and len(attrs[0]) > 0 and attrs[0][0] == 'class' \
+                and attrs[0][1] == 'league-link' :
+            self.currTag = tag
+            self.currLeague = '?'
+        if tag == 'h6' and len(attrs) > 0 and len(attrs[0]) > 0 and attrs[0][0] == 'class' \
+                and attrs[0][1] == 'event-header-level0' :
+            self.currTag = tag
+            self.currPlayTime = '?'
 
+        if tag == 'h6' and len(attrs) > 0 and len(attrs[0]) > 0 and attrs[0][0] == 'class' \
+                and attrs[0][1] == 'event-header-level0' :
+            self.currTag = tag
+            self.currPlayTime = '?'
+
+    def handle_data(self, data):
+        if self.currTag != '' and self.currPlayDay == '?':
+            self.currPlayDay = data
+            self.currPlayDay = str(self.currPlayDay)[str(self.currPlayDay).find('-', 0)+1:].strip()
+            print(self.currPlayDay)
+            self.currTag = ''
+
+        if self.currTag != '' and self.currPlayTime == '?':
+            self.currPlayTime = str(data).strip()
+            print(self.currPlayTime)
+            self.currTag = ''
+
+        if self.currTag != '' and self.currLeague == '?':
+            self.currLeague = data
+            self.currLeague = str(self.currLeague)[:str(self.currLeague).find('-', 0)].strip()
+            self.currCountry = str(data)[str(data).find('-', 0)+1:].strip()
+            print(self.currLeague)
+            print(self.currCountry)
+            self.currTag = ''
+
+        self.outputContent += self.composeLine()
 
     def handle_endtag(self, tag):
         pass
 
-    def handle_data(self, data):
-        if self.currTag != '':
-            print(data.strip())
-            self.currTag = ''
-
     def handle_startendtag(self, tag, attrs):
         pass
 
-    def newPlayDay(self, st):
-        pass
-
     def getFinal(self):
+        print(self.outputContent)
         return self.outputContent
+
+    def composeLine(self):
+        line = ','.join([self.currCountry, self.currLeague, self.currPlayDay, self.currPlayTime,
+                         self.currTeam1, self.currTeam2, str(self.currQ1), str(self.currQX), str(self.currQ2), '\n'])
+        return line
 
 import codecs
 
@@ -60,7 +96,7 @@ class ReadHtml:
     fd = 0
     def __init__(self, file):
         self.file_location = file
-        print('setting file location ', self.file_location)
+        print('Location ', self.file_location)
 
     def parse(self):
         try:
@@ -73,7 +109,6 @@ class ReadHtml:
 
 def main():
     tipico_home = "bwin_BL1.html"
-
     reader = ReadHtml(tipico_home)
     reader.parse()
     parser = pyHTMLParse()
