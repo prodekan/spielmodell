@@ -70,48 +70,39 @@ class pyHTMLParse(HTMLParser):
         if self.currTag != '' and self.currPlayDay == '?':
             self.currPlayDay = data
             self.currPlayDay = str(self.currPlayDay)[str(self.currPlayDay).find('-', 0) + 1:].strip()
-            print(self.currPlayDay)
             self.currTag = ''
 
         if self.currTag != '' and self.currPlayTime == '?':
             self.currPlayTime = str(data).strip()
-            print(self.currPlayTime)
             self.currTag = ''
 
         if self.currTag != '' and self.currLeague == '?':
             self.currLeague = data
             self.currLeague = str(self.currLeague)[:str(self.currLeague).find('-', 0)].strip()
             self.currCountry = str(data)[str(data).find('-', 0) + 1:].strip()
-            print(self.currLeague)
-            print(self.currCountry)
             self.currTag = ''
 
         if self.currTag != '' and self.indicators == [1, 0, 0, 0, 0, 0]:
             self.currQ1 = float(data)
-            print(self.currQ1)
             self.currTag = ''
 
         if self.currTag != '' and self.indicators == [0, 1, 0, 0, 0, 0]:
             self.currTeam1 = str(data).strip()
-            print(self.currTeam1)
             self.currTag = ''
 
         if self.currTag != '' and self.indicators == [0, 0, 1, 0, 0, 0]:
             self.currQX = float(data)
-            print(self.currQX)
             self.currTag = ''
 
         if self.currTag != '' and self.indicators == [0, 0, 0, 0, 1, 0]:
             self.currQ2 = float(data)
-            print(self.currQ2)
             self.currTag = ''
 
         if self.currTag != '' and self.indicators == [0, 0, 0, 0, 0, 1]:
             self.currTeam2 = str(data).strip()
-            print(self.currTeam2)
             self.currTag = ''
+            self.outputContent += self.composeLine()
 
-        #self.outputContent += self.composeLine()
 
     def handle_endtag(self, tag):
         pass
@@ -137,7 +128,7 @@ class pyHTMLParse(HTMLParser):
         elif self.indicators == [0, 0, 0, 0, 1, 0]:
             return [0, 0, 0, 0, 0, 1]
         elif self.indicators == [0, 0, 0, 0, 0, 1]:
-            return [0, 0, 0, 0, 0, 0]
+            return [1, 0, 0, 0, 0, 0]
 
     def composeLine(self):
         line = ','.join([self.currCountry, self.currLeague, self.currPlayDay, self.currPlayTime,
