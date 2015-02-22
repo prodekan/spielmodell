@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../tipicoScraper/bwinParser/.idea/bwinParser.iml" filepath="$PROJECT_DIR$/../tipicoScraper/bwinParser/.idea/bwinParser.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/htmlBLParser.iml" filepath="$PROJECT_DIR$/.idea/htmlBLParser.iml" />
+    </modules>
+  </component>
+</project>
+

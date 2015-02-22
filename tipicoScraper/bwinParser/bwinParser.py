@@ -159,14 +159,23 @@ class ReadHtml:
 
 
 def main():
-    tipico_home = "bwin_BL1.html"
+    try:
+        link = sys.argv[1]
+    except IndexError:
+        print("sys.argv[1] failed. please provide a parameter (link to parse)")
+        return
+    print("link =", link)
+
+    tipico_home = "Bundesliga.html"
+    url =  urllib.request.urlopen(link)
+    s = url.read()
     reader = ReadHtml(tipico_home)
     reader.parse()
     parser = pyHTMLParse()
     parser.feed(reader.file_content)
     parser.close()
-    outputName = "output.csv"
-    o = open(outputName, 'a')
+    outputName = "Bundesliga_out.csv"
+    o = codecs.open(outputName, 'a', 'utf8')
     o.write(parser.getFinal())
     o.close()
 

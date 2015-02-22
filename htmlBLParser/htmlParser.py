@@ -1,15 +1,16 @@
 __author__ = 'selver'
 
 import glob
-
+import codecs
 from html.parser import HTMLParser
 import urllib
 
-import urllib.request
-import urllib.error
+import wget
+
+import requests
 
 class pyHTMLParse(HTMLParser):
-    saison = ''
+    season = ''
     playday = ''
     team1 = ''
     team2 = ''
@@ -24,7 +25,7 @@ class pyHTMLParse(HTMLParser):
     def __init__(self, saison = '0/0'):
         # initialize the base class
         HTMLParser.__init__(self)
-        self.saison = saison
+        self.season = saison
 
     def read(self, data):
         # clear the current output before re-use
@@ -83,11 +84,14 @@ class pyHTMLParse(HTMLParser):
             self.playday = st
 
     def composeLine(self):
-        line = ','.join([self.playday, self.team1, self.team2, self.g1, self.g2, self.g1_first_half, self.g2_first_half, self.saison, '\n'])
+        line = ','.join([self.playday, self.team1, self.team2, self.g1, self.g2, self.g1_first_half, self.g2_first_half, self.season, '\n'])
         return line
 
     def getFinal(self):
         return self.outputContent
+
+    def insertRecordIntoDB(self, list):
+
 
 
 class ReadHtml:
@@ -104,26 +108,32 @@ class ReadHtml:
         self.file_content = self.fd.read()
         self.fd.close()
 
-
 def main():
+    print('BEGIN')
     list_of_links = list()
     liga = '2-bundesliga'
     season = '2013-2014'
-    link = 'http://www.weltfussball.de/alle_spiele/'
-    s1 = int(season[:4])
-    s2 = int(season[5:9])
 
     for i in range(1,50):
+        link = 'http://www.weltfussball.de/alle_spiele/'
+        print(season)
+        s1 = int(season[:4])
+        s2 = int(season[5:9])
         link = link + liga + '-'
 
         link = link + season
         s1 -= 1
         s2 -= 1
+        list_of_links.append(link)
+        print(link)
+        try:
+            r = wget.download(link, str(season)+'.html')
+        except IOError:
+            print('Error happened')
 
-    url =  urllib.request.urlopen(link)
-    s = url.read()
+        season = str(s1)+'-'+str(s2)
 
-    dir = '/home/selver/PycharmProjects/htmlBLParser/site_results/*.html'
+    dir = '*.html'
     all_html_files = glob.glob(dir)
     print(all_html_files)
 
@@ -138,7 +148,7 @@ def main():
         parser = pyHTMLParse(saison)
         parser.feed(reader.file_content)
         parser.close()
-        outputName = "/home/selver/PycharmProjects/htmlBLParser/bundesliga1.csv"
+        outputName = "bundesliga2.csv"
         o = open(outputName, 'a')
         o.write(parser.getFinal())
         o.close()

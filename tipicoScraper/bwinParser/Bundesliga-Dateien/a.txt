@@ -1,0 +1,1122 @@
+mmcore.SetCookie('mmid','819890040|CgAAAAonisqRkAsAAA==',365,1);mmcore.SetCookie('pd','-1612844129|CgAAAAoBQieKypGQC5rmo2oDAEbrJJPFG9JIAA4AAAB4jK8euxHSSAAAAAD/////AP//////////AAZEaXJlY3QBnQsBAAIAAAABAAAAAAD///////////////8AAAAAAAFF',365);mmcore.SetCookie('srv','ldnvwcgeu11',365);(function(){if(typeof(mmcore.GenInfo)!='object')mmcore.GenInfo={};if(typeof mmcore.recommendations=='undefined')mmcore.recommendations={};
+if(typeof mmcore.recommendationErrors=='undefined')mmcore.recommendationErrors={};
+mmcore.recommendationErrors['json_InvalidFilters']='[]';
+mmcore.recommendationErrors['InvalidFilters']=eval(mmcore.recommendationErrors['json_InvalidFilters']);
+mmcore.EH=function(e){var s=e.message+'\r\n';if(!window.mm_error)window.mm_error=s;else window.mm_error+=s;};
+try{
+// Maxymiser Core - Attach Style v0.0.0 http://gitlab.maxymiser.net/gts/mmcore-attach-style/tree/master
+(function(){'use strict';mmcore.AttachStyle=function(){var c={STYLE_ID:"mm-style",createStyle:function(){var b=document.createElement("style");b.type="text/css";return b},appendCssToStyle:function(){var b,a;"styleSheet"in c.createStyle()?(b=function(a){return a.styleSheet.cssText},a=function(a,b){a.styleSheet.cssText=b}):(b=function(a){return a.innerHTML},a=function(a,b){a.innerHTML=b});return(c.appendCssToStyle=function(c,d){a(d,b(d)+c)}).apply(this,arguments)}};return function(b){var a=document.getElementById(c.STYLE_ID);a||(a=c.createStyle(),a.id=c.STYLE_ID,function(){this.parentNode.insertBefore(a,this)}.call(document.getElementsByTagName("head")[0].lastChild));c.appendCssToStyle(b,a)}}()})();
+}catch(err){mmcore.EH(err);}
+try{
+//Essentials
+
+// Maxymiser Core - Try Catch v0.0.0
+;(function(){'use strict';mmcore.tryCatch=function(){return function b(c,d){var e=arguments.length;return function(){try{return c.apply(this,arguments)}catch(a){try{mmcore.EH(a)}finally{1<e&&b(d)(a)}}}}}()})();
+
+// Maxymiser Essentials - Deferred v0.0.2
+;(function(){var e,t,n,r,i,s,o,u,a,f,l,c,h=[].slice;t="pending";r="resolved";n="rejected";if("function"!==typeof Array.prototype.reduce){Array.prototype.reduce=function(e){if(null===this||"undefined"===typeof this){throw new TypeError("Array.prototype.reduce called on null or undefined")}if("function"!==typeof e){throw new TypeError(e+" is not a function")}var t=Object(this),n=t.length>>>0,r=0,i;if(arguments.length>=2){i=arguments[1]}else{while(r<n&&!r in t)r++;if(r>=n)throw new TypeError("Reduce of empty array with no initial value");i=t[r++]}for(;r<n;r++){if(r in t){i=e(i,t[r],r,t)}}return i}}if(!Array.isArray){Array.isArray=function(e){return Object.prototype.toString.call(e)==="[object Array]"}}u=function(e,t){return e!=null?e.hasOwnProperty(t):void 0};a=function(e){return u(e,"length")&&u(e,"callee")};f=function(e){return u(e,"promise")&&typeof (e!=null?e.promise:void 0)==="function"};o=function(e){if(a(e)){return o(Array.prototype.slice.call(e))}if(!Array.isArray(e)){return[e]}return e.reduce(function(e,t){if(Array.isArray(t)){return e.concat(o(t))}e.push(t);return e},[])};i=function(e,t){if(e<=0){return t()}return function(){if(--e<1){return t.apply(this,arguments)}}};l=function(e,t){return function(){var n;n=[e].concat(Array.prototype.slice.call(arguments,0));return t.apply(this,n)}};s=function(e,t,n){var r,i,s,u,a;u=o(e);a=[];for(i=0,s=u.length;i<s;i++){r=u[i];a.push(r.call.apply(r,[n].concat(h.call(t))))}return a};e=function(){var i,u,a,l,c,p,d;d=t;l=[];c=[];p=[];a={resolved:{},rejected:{},pending:{}};this.promise=function(i){var u,v;i=i||{};i.state=function(){return d};v=function(e,n,r){return function(){if(d===t){n.push.apply(n,o(arguments))}if(e()){s(arguments,a[r])}return i}};i.done=v(function(){return d===r},l,r);i.fail=v(function(){return d===n},c,n);i.progress=v(function(){return d!==t},p,t);i.always=function(){var e;return(e=i.done.apply(i,arguments)).fail.apply(e,arguments)};u=function(t,n,r){var s,o;o=new e;s=function(e,t,n){if(!n){return i[e](o[t])}return i[e](function(){var e,r;e=1<=arguments.length?h.call(arguments,0):[];r=n.apply(null,e);if(f(r)){return r.done(o.resolve).fail(o.reject).progress(o.notify)}else{return o[t](r)}})};s("done","resolve",t);s("fail","reject",n);s("progress","notify",r);return o};i.pipe=u;i.then=u;if(i.promise==null){i.promise=function(){return i}}return i};this.promise(this);i=this;u=function(e,n,r){return function(){if(d===t){d=e;a[e]=arguments;s(n,a[e],r);return i}return this}};this.resolve=u(r,l);this.reject=u(n,c);this.notify=u(t,p);this.resolveWith=function(e,t){return u(r,l,e).apply(null,t)};this.rejectWith=function(e,t){return u(n,c,e).apply(null,t)};this.notifyWith=function(e,n){return u(t,p,e).apply(null,n)};return this};c=function(){var t,n,r,s,u,a,l;n=o(arguments);if(n.length===1){if(f(n[0])){return n[0]}else{return(new e).resolve(n[0]).promise()}}u=new e;if(!n.length){return u.resolve().promise()}s=[];r=i(n.length,function(){return u.resolve.apply(u,s)});n.forEach(function(e,t){if(f(e)){return e.done(function(){var e;e=1<=arguments.length?h.call(arguments,0):[];s[t]=e.length>1?e:e[0];return r()})}else{s[t]=e;return r()}});for(a=0,l=n.length;a<l;a++){t=n[a];f(t)&&t.fail(u.reject)}return u.promise()};mmcore.Deferred=function(){return new e};mmcore.when=c}).call(this);
+
+// Maxymiser Essentials - Wait for v0.1.1
+!function(){"use strict";mmcore.waitFor=function(e,t){var i,o;return o=mmcore.Deferred(),o.isComplete=function(){return"pending"!==o.state()},t=t||{},t.interval=t.interval||50,t.isNotStoppedOnDocumentReadiness=t.isNotStoppedOnDocumentReadiness||!1,t.isNotPeriodicallyChecked=t.isNotPeriodicallyChecked||!1,i=function(){o.isComplete()||(e.call(o)&&o.resolve(),o.isComplete()||(!t.isNotStoppedOnDocumentReadiness&&(mmcore.$&&mmcore.$.isReady||!mmcore.$&&"complete"===document.readyState)?o.reject():t.isNotPeriodicallyChecked||setTimeout(i,t.interval)))},t.hasOwnProperty("initializer")&&t.initializer.call(o),i(),o.isComplete()||(t.hasOwnProperty("timeout")&&!function(){var e=setTimeout(o.reject,t.timeout);o.always(function(){clearTimeout(e)})}(),t.isNotStoppedOnDocumentReadiness||mmcore.AddDocLoadHandler(t.isNotPeriodicallyChecked?o.reject:i)),o.promise()}}();
+
+// Maxymiser Essentials - Campaign v0.3.3
+;(function(){"use strict";function e(e,t){var n=false;for(var r=0;r<t.length;r++){if(t[r]===e){n=true}}return n}function n(e,t,n){this.name=e;this.maxyboxNames=t;this.prefix=n;this.preventDefaultRendering();this.preventDefaultHiding()}mmcore.Campaign=n;var t=function(e,t,n){var r,i=[],s=0,o=e.length;n=!!n;for(;s<o;s++){r=!!t(e[s],s);if(n!==r){i.push(e[s])}}return i};n.prototype.preventDefaultRendering=function(){var e=mmcore._r_mbs;var t=this.maxyboxNames;var n=t.length;while(n--){e[t[n]]=1}};n.prototype.preventDefaultHiding=function(){var n=this;mmcore.HideMaxyboxes=function(r){return function(){var i=arguments;mmcore.tryCatch(function(){i=t(i,function(t){return e(t,n.maxyboxNames)})})();if(i.length){return r.apply(this,i)}}}(mmcore.HideMaxyboxes);mmcore._MbStyle=function(){}};n.prototype.hideContent=function(e,t){var n;var r;var i;var s;var o=document.getElementsByTagName("html")[0];var u=o.getAttribute("class");this.hidingClass=this.prefix+"-hidden-content";if(u!==null&&u===""){u=this.hidingClass}else{u=u+" "+this.hidingClass}o.setAttribute("class",u);if(arguments.length<2){t="left: -33554430px; position: absolute; top: -33554430px;"}n=this.hidingClass;s=e.split(",");i=s.length;r="";while(i--){r+="."+n+" "+s[i]+"{"+t+"}"}mmcore.AttachStyle(r)};n.prototype.showContent=function(){if(this.hasOwnProperty("hidingClass")){var e=document.getElementsByTagName("html")[0];var t=e.getAttribute("class");if(t!==null&&t!==""){t=t.replace(this.hidingClass,"");e.setAttribute("class",t)}}};n.prototype.getExperience=function(){return mmcore.GenInfo.hasOwnProperty(this.name)?mmcore.GenInfo[this.name]:null};n.prototype.hasNonDefaultExperience=function(){var e,t;e=this.getExperience();if(!e){return false}t=false;for(var n in e){if(e.hasOwnProperty(n)&&e[n]!=="Default"){t=true;break}}return t};n.prototype.hasMaxybox=function(){return this.hasNonDefaultExperience()};n.prototype.extend=function(t){for(var n in t)this[n]=t[n];return this},n.prototype.renderMaxyboxes=function(){var n;var r;var i;r=this.maxyboxNames;if(arguments.length){r=t(arguments,function(t){return!e(t,r)})}n=this;for(i in mmcore._renderers){if(e(i,r)&&typeof mmcore._renderers[i]==="function"){mmcore._renderers[i].call(n)}}}})();
+
+// Maxymiser Essentials - Request 0.2.1
+;(function(){"use strict";var e="event";var t=2250;var n;var r=function(){n=mmcore.Deferred();mmcore.request.promise=n.promise()};mmcore.request=function(i,s){var o=n;r();if(!arguments.length){i=e}mmcore.SetPageID(i);mmcore._async=!s;mmcore.CGRequest(o.resolve);setTimeout(mmcore.tryCatch(o.reject),t);return o.promise()};r()})();
+
+//Maxymiser Essentials - Mediator 0.2.1
+;(function(){"use strict";function e(){var e=function(){return((1+Math.random())*65536|0).toString(16).substring(1)};return e()+e()+"-"+e()+"-"+e()+"-"+e()+"-"+e()+e()+e()}function t(n,r,i){if(!(this instanceof t)){return new t(n,r,i)}this.id=e();this.fn=n;this.options=r;this.context=i;this.channel=null}function n(e,t){if(!(this instanceof n)){return new n(e)}this.namespace=e||"";this._subscribers=[];this._channels=[];this._parent=t;this.stopped=false}function r(){if(!(this instanceof r)){return new r}this._channels=new n("")}t.prototype={update:function(e){if(e){this.fn=e.fn||this.fn;this.context=e.context||this.context;this.options=e.options||this.options;if(this.channel&&this.options&&this.options.priority!==undefined){this.channel.setPriority(this.id,this.options.priority)}}}};n.prototype={addSubscriber:function(e,n,r){var i=new t(e,n,r);if(n&&n.priority!==undefined){n.priority=n.priority>>0;if(n.priority<0){n.priority=0}if(n.priority>=this._subscribers.length){n.priority=this._subscribers.length-1}this._subscribers.splice(n.priority,0,i)}else{this._subscribers.push(i)}i.channel=this;return i},stopPropagation:function(){this.stopped=true},getSubscriber:function(e){var t=0,n=this._subscribers.length;for(t,n;t<n;t++){if(this._subscribers[t].id===e||this._subscribers[t].fn===e){return this._subscribers[t]}}},setPriority:function(e,t){var n=0,r=0,i,s,o,u;for(r=0,u=this._subscribers.length;r<u;r++){if(this._subscribers[r].id===e||this._subscribers[r].fn===e){break}n++}i=this._subscribers[n];s=this._subscribers.slice(0,n);o=this._subscribers.slice(n+1);this._subscribers=s.concat(o);this._subscribers.splice(t,0,i)},addChannel:function(e){this._channels[e]=new n((this.namespace?this.namespace+":":"")+e,this)},hasChannel:function(e){return this._channels.hasOwnProperty(e)},returnChannel:function(e){return this._channels[e]},removeSubscriber:function(e){var t=this._subscribers.length-1;if(!e){this._subscribers=[];return}for(t;t>=0;t--){if(this._subscribers[t].fn===e||this._subscribers[t].id===e){this._subscribers[t].channel=null;this._subscribers.splice(t,1)}}},publish:function(e){var t=0,n=this._subscribers.length,r=false,i,s,o,u;for(t,n;t<n;t++){r=false;if(!this.stopped){i=this._subscribers[t];if(i.options!==undefined&&typeof i.options.predicate==="function"){if(i.options.predicate.apply(i.context,e)){i.fn.apply(i.context,e);r=true}}else{o=this._subscribers.length;i.fn.apply(i.context,e);u=this._subscribers.length;n=u;if(u===o-1){t--}r=true}}if(r&&i.options&&i.options!==undefined){i.options.calls--;if(i.options.calls<1){this.removeSubscriber(i.id);n--;t--}}}if(this._parent){this._parent.publish(e)}this.stopped=false}};r.prototype={getChannel:function(e){var t=this._channels,n=e.split(":"),r=0,i=n.length;if(e===""){return t}if(n.length>0){for(r,i;r<i;r++){if(!t.hasChannel(n[r])){t.addChannel(n[r])}t=t.returnChannel(n[r])}}return t},subscribe:function(e,t,n,r){var i=this.getChannel(e);n=n||{};r=r||{};return i.addSubscriber(t,n,r)},once:function(e,t,n,r){n=n||{};n.calls=1;return this.subscribe(e,t,n,r)},getSubscriber:function(e,t){return this.getChannel(t||"").getSubscriber(e)},remove:function(e,t){this.getChannel(e).removeSubscriber(t)},publish:function(e){var t=Array.prototype.slice.call(arguments,1),n=this.getChannel(e);t.push(n);this.getChannel(e).publish(t)}};r.prototype.on=r.prototype.subscribe;r.prototype.bind=r.prototype.subscribe;r.prototype.emit=r.prototype.publish;r.prototype.trigger=r.prototype.publish;r.prototype.fire=r.prototype.publish;r.prototype.off=r.prototype.remove;r.Channel=n;r.Subscriber=t;mmcore.mediator=new r})();
+
+//Maxymiser Essentials - Currency 0.0.0
+;(function(){var e="mmCurrencyCache";var t="//service.maxymiser.net/cdn/gt/currency.js";var n=5;var r=function(){var e=mmcore.Deferred();setTimeout(function(){e.reject("source load timeout")},2e3);window.mmApplyCurrency=function(t){e.resolve(t)};document.write("<sc"+'ript src="'+t+'"></sc'+"ript>");return e.promise()};var i=function(t){try{localStorage.setItem(e,JSON.stringify(t));localStorage.setItem(e+"_lastUpdate",(new Date).getTime())}catch(n){localStorage.removeItem(e);localStorage.removeItem(e+"_lastUpdate")}};var s=function(){var t=localStorage.getItem(e+"_lastUpdate");if(!t){return}if(Number(t)+n*24*60*60<(new Date).getTime()){localStorage.removeItem(e+"_lastUpdate");localStorage.removeItem(e)}};var o=function(){var t=localStorage.getItem(e);var n=null;if(!t){return null}try{n=JSON.parse(t)}catch(r){return null}return n};var u=function(){s();this.isReady=false;this.rates=o();var e=this;if(this.rates){this.isReady=true}else{r().done(function(t){e.rates=t;i(t);e.isReady=true})}};u.prototype.convert=function(e,t,n){try{if(!e||!t||e==t){return n}e=e.toUpperCase();t=t.toUpperCase();if(!this.rates[t]||!this.rates[t][e]){return n}return Math.round(this.rates[t][e]*n*100)/100}catch(r){return n}};mmcore.currency=new u})();
+}catch(err){mmcore.EH(err);}
+try{
+// console log realisation for 'mmcore'
+mmcore.log = function () {
+	if (mmcore._vars.cfgid === '1' && typeof console === 'object') {
+		console.log.apply(console, arguments);
+	}
+};
+/*
+ * Developed by Oleg Kirienko on 12.09.2013
+ * To extend the 'mmcore.snippets' namespace
+ * with a new snippet extension
+ */
+mmcore.snippets = (function (snippets) {
+    "use strict";
+    // Extensions: Generation Data Setter, Platform Detector, Mediator;
+
+    /* The cookie generation data setter implementation begin */
+    snippets.setGenerationDataToCookie = (function () {
+        var cookieName = 'bwinmobilevar',
+            cookieExpire = 365,
+            mgi = mmcore.GenInfo;
+
+        // Convert the cookie to an object
+        function cookieToObject() {
+            var allExperiences = {};
+            mmcore.GetCookie(cookieName).replace(/([^_]*)_([^;]*);?/g, function (fullMatch, campaignID, campaignExperience) {
+                allExperiences[campaignID] = campaignExperience;
+            });
+            return allExperiences;
+        }
+
+        // Convert a generation of a campaign based on a dependency
+        function convertGenVariant(dependency, name) {
+            var generation = mgi[name],
+                convertedVariants = '',
+                element;
+            for (element in dependency) {
+                if (dependency.hasOwnProperty(element)) {
+                    convertedVariants += dependency[element][generation[element].toLowerCase()];
+                }
+            }
+            return convertedVariants;
+        }
+
+        // Save the updated cookie
+        function updateCookie(campsData) {
+            var campsArray = [],
+                campaignID,
+                generation,
+                cookieValue;
+            for (campaignID in campsData) {
+                if (campsData.hasOwnProperty(campaignID)) {
+                    generation = campsData[campaignID];
+                    campsArray.push([campaignID, generation].join("_"));
+                }
+            }
+            cookieValue = campsArray.join(";");
+            mmcore.SetCookie(cookieName, cookieValue, cookieExpire)
+        }
+
+        // Set generation data to the cookie
+        function setGenData(campaignsData) {
+            var allExperiences;
+            if (typeof campaignsData === 'object') {
+                // get generations from the cookie
+                allExperiences = cookieToObject();
+                // add new generation
+                allExperiences[campaignsData['campaignID']] = convertGenVariant(campaignsData['dependency'], campaignsData['name']);
+                // update the cookie with new updated generation data
+                updateCookie(allExperiences);
+            }
+        }
+
+        // Return a new 'snippets' method to store generation data
+        return setGenData;
+    }());
+    /* The cookie generation data setter implementation end */
+
+	/* The Platform Detector implementation begin */
+	snippets.detectPlatform = function (userAgent) {
+		var type = '',
+			platform = '',
+			result,
+			mobile = /iphone|ipod|ipad|android|windows phone|silk|blackberry|symbian|mobile|rim tablet os|BB10|tablet/i,
+			pc = /windows|mac|linux/i,
+			platformInfo = {};
+
+		userAgent = (userAgent || navigator.userAgent).toLowerCase();
+
+		result = mobile.exec(userAgent);
+		if (result) {
+			if (userAgent.indexOf('silk') >= 0) {
+				// Silk
+				type = 'tablet';
+				platform = 'android';
+			} else {
+				if ((userAgent.indexOf('android') >= 0 && userAgent.indexOf('mobile') < 0) ||
+					(userAgent.indexOf('ipad') >= 0) || (userAgent.indexOf('rim tablet os') >= 0) ||
+					(userAgent.indexOf('tablet') >= 0)) {
+					// Android, BlackBerry tablet, iPad
+					type = 'tablet';
+				} else {
+					// Android phone, iPhone, iPod, Windows Phone, BlackBerry, Symbian
+					type = 'mobile';
+				}
+				platform = result[0].replace(' ', '');
+			}
+		} else {
+			result = pc.exec(userAgent);
+			if (result) {
+				// Desktop platforms.
+				type = 'pc';
+				platform = result[0];
+			} else {
+				// Unknown platforms.
+				type = 'unknown';
+				platform = 'unknown';
+			}
+		}
+
+		// Set properties.
+		platformInfo.type = type;
+		platformInfo.original = platform;
+		platformInfo[type] = true;
+		platformInfo[platform] = true;
+
+		return platformInfo;
+	};
+	/* The Platform Detector implementation end */
+
+    /* Mediator implementation start begin */
+	snippets.mediator = (function (mediator) {
+		"use strict";
+
+		// Common features of a custom object that provide ability to be a mediator (publisher-subscriber).
+		var publisher = {
+			on: function (type, fn, context) {
+				type = type || 'any';
+				fn = (typeof fn === 'function') ? fn : context[fn];
+				if (typeof this.subscribers[type] === 'undefined') {
+					this.subscribers[type] = [];
+				}
+				this.subscribers[type].push({fn: fn, context: context || this});
+			},
+			remove: function (type, fn, context) {
+				this.visitSubscribers('unsubscribe', type, fn, context);
+			},
+			fire: function (type, publication) {
+				this.visitSubscribers('publish', type, publication);
+			},
+			visitSubscribers: function (action, type, arg, context) {
+				var pubtype = type || 'any',
+					subscribers = this.subscribers[pubtype],
+					i,
+					max = subscribers ? subscribers.length : 0;
+				for (i = 0; i < max; i += 1) {
+					if (action === 'publish') {
+						subscribers[i].fn.apply(subscribers[i].context, arg || []);
+					} else {
+						if (subscribers[i].fn === arg && subscribers[i].context === context) {
+							subscribers.splice(i, 1);
+						}
+					}
+				}
+			}
+		};
+
+		// a function that mix a custom object to be a mediator
+		function makePublisher(o) {
+			var i;
+			for (i in publisher) {
+				if (publisher.hasOwnProperty(i) && typeof publisher[i] === 'function') {
+					o[i] = publisher[i];
+				}
+			}
+			o.subscribers = {any: []};
+
+			return o;
+		}
+
+		// now the publisher can make other objects to be publisher
+		mediator.makePublisher = makePublisher;
+
+		// extends mmcore.js with functionality of mediator pattern
+		return makePublisher(mediator);
+	}(snippets.mediator || {}));
+  	/* Mediator implementation end */
+  
+    // Return the extended 'snippets' namespace
+    return snippets;
+}(mmcore.snippets || {}));
+}catch(err){mmcore.EH(err);}
+try{
+(function (s) {
+    "use strict";
+    var languages = {
+            'en': 'English',
+            'de': 'German',
+            'it': 'Italian',
+            'es': 'Spanish',
+            'sv': 'Swedish',
+            'fr': 'French',
+            'tr': 'Turkish',
+            'el': 'Greek',
+            'pl': 'Polish',
+            'nb': 'Norwegian',
+            'da': 'Danish',
+            'ca': 'Catalan',
+            'cs': 'Czech',
+            'hu': 'Hungarian',
+            'pt': 'Portuguese',
+            'ru': 'Russian',
+            'sl': 'Slovenian',
+            'hr': 'Croatian',
+            'sk': 'Slovak',
+            'ro': 'Romanian',
+            'bg': 'Bulgarian'
+        },
+		currentPlatformType,
+		currentLanguage = '',
+		mobileLanguageLinkHref,
+		langPCName,
+		langPCValue,
+		affiliatePCValue,
+		productPCValue = 'Other',
+		visitedProduct = mmcore.GetCookie('ComeFromProduct', 1);
+
+	// get current platform type
+	currentPlatformType = ((s && s.detectPlatform && s.detectPlatform()) || {type: ''})['type'];
+
+	function setLanguagePC() {
+		if ((typeof currentLanguage === 'string') && (currentLanguage !== '')) {
+			if (langPCValue = languages[mmcore._TL(currentLanguage)]) {
+				mmcore.SetPersistentCriterion(langPCName, langPCValue);
+			}
+		}
+	}
+
+	function getAttr(elem, attr) {
+		var result = (elem.getAttribute && elem.getAttribute(attr)) || null,
+			attrs,
+			length,
+			i = 0;
+
+		if (!result) {
+			attrs = elem.attributes;
+			length = attrs.length;
+			for (; i < length; i++) {
+				if (attrs[i].nodeName === attr) {
+					result = attrs[i].nodeValue;
+				}
+			}
+		}
+		return result;
+	}
+
+	if (currentPlatformType === 'pc') {
+		// get Desktop PC data
+		langPCName = 'Language';
+		currentLanguage = getAttr(document.documentElement, 'lang') || window.mlLanguage || '';
+		// set Language PC
+		setLanguagePC();
+		// set Affiliate PC
+		if ((affiliatePCValue = mmcore.GetCookie('trackerId', 1))) {
+			mmcore.SetPersistentCriterion('Affiliate', affiliatePCValue);
+		} else {
+			mmcore.SetPersistentCriterion('Affiliate', 'Other');
+		}
+		// set Product PC
+		switch(true) {
+			case visitedProduct === 'SPORTSBOOK': productPCValue = 'Sports'; break;
+			case visitedProduct === 'POKER': productPCValue = 'Poker'; break;
+			case visitedProduct === 'CASINO': productPCValue = 'Casino'; break;
+			case visitedProduct === 'BINGO': productPCValue = 'Bingo'; break;
+		}
+		mmcore.SetPersistentCriterion('Product', productPCValue);
+	} else if (currentPlatformType === 'mobile' || currentPlatformType === 'tablet') {
+		mmcore.AddDocLoadHandler(function () {
+			// get Mobile and Tablet PC data
+			langPCName = 'MOB_Lang_All';
+			mobileLanguageLinkHref = (document.querySelector('a[href*="portal/language"]') || {'getAttribute': function (a) {return ''}}).getAttribute('href');
+			currentLanguage = mobileLanguageLinkHref && (mobileLanguageLinkHref.match(/\.com\/([a-z]{2})\//i) || [, ''])[1].toUpperCase();
+			setLanguagePC();
+		});
+	}
+}(mmcore.snippets));
+}catch(err){mmcore.EH(err);}
+try{
+/**
+ * Maxymiser Core - ClickTale Session Recorder
+ *
+ * @version 1.0.1
+ * @author evgeniy.pavlyuk@maxymiser.com (Evgeniy Pavlyuk)
+ * Edited by Andrew Taylor 20022014 - checkForClickTaleArrival re-write
+ * Edited by Andrew Taylor 20022014 - setClickTaleTags ammened to include campaign name
+ * Edited by Andrew Taylor 16072014 - Save all cookies and transfer to CT
+ * Edited by Andrew Taylor 14082014 - Change Event name logged if OPC is present
+ */
+/* global ClickTaleField, ClickTaleTag */
+
+(function () {
+    'use strict';
+
+    var recording;
+    /* Is the page played back in ClickTale Session Player? */
+    if (window.parent !== window &&
+        typeof window.parent.WebPlayer === 'function') {
+        mmcore.clickTalePageviewSessionRecording = {
+            suspend: function () {},
+            resume: function () {}
+        };
+        return;
+    }
+
+    recording = {
+        isStarted: false,
+        numberOfSuspensions: 0,
+        fields: {},
+        tags: []
+    };
+
+    /* Remember the page ID set for the first CG request. Page ID, other than the current URL, is set for the first CG request only if the 
+    global variable mmPageID is defined and evaluated to boolean true.*/
+    
+    recording.fields.mmPgID = (window.mmPageID ? String(window.mmPageID) : location.href).substring(0, 1024); // mmcore truncates page ID to 1024 characters.
+
+/*save all cookies*/
+        recording.fields.mmCookies = document.cookie;
+
+    recording.checkState = function () {
+        if (recording.isStarted) {
+            //throw new Error('ClickTale session recording has already been started');
+        }
+    };
+
+    recording.cleanUp = function () {
+        var propertyName;
+        var propertyNames;
+
+        propertyNames = [
+            'clearUp',
+            'fields',
+            'numberOfSuspensions',
+            'record',
+            'tags'
+        ];
+
+        /*do {
+            propertyName = propertyNames.shift();
+
+            recording[propertyName] = null;
+            delete recording[propertyName];
+        } while (propertyNames.length);*/
+        recording.tags = [];
+    };
+
+    mmcore._callback[mmcore._request_id] = (function (callback) {
+        return function () {
+            try {
+                recording.checkState();
+                recording.start();
+            } finally {}
+
+            return callback.apply(this, arguments);
+        };
+    }(mmcore._callback[mmcore._request_id]));
+
+    recording.start = function () {
+        recording.isStarted = true;
+
+    /*log experience of troubleshooting*/
+    var mmExp = "";
+    if (mmcore.GenInfo) {
+        var gen = mmcore.GenInfo;
+        for (var testName in gen) {
+            for (var element in gen[testName]) {
+                if (gen[testName].hasOwnProperty(element)) {
+                mmExp += testName + '-' + gen[testName][element] + '|';  
+                }
+            }  
+        }    
+    } 
+    recording.fields.mmExp = mmExp;
+    recording.fields.mmPd = mmcore.GetParam('pd');
+    recording.fields.mmID = mmcore.GetParam('mmid', true);
+    recording.fields.mmSrv = mmcore.GetCookie('srv');
+    recording.fields.mmCfgID = mmcore.GetCookie('cfgID');
+    recording.fields.mmPathname = window.location.pathname;
+    if (!recording.fields.mmCfgID) {
+        recording.fields.mmCfgID = '1';
+    }
+
+        
+    /* Set ClickTale fields. */
+    function setClickTaleFields() {
+        var fieldName;
+        var fieldValue;
+
+        for (fieldName in recording.fields) {
+            if (!recording.fields.hasOwnProperty(fieldName)) {
+            continue;
+            }
+
+            fieldValue = recording.fields[fieldName];
+            ClickTaleField(fieldName, fieldValue);
+        }
+    };
+
+    /* Create a tag for each maxybox ("elementName=varaintName"). */
+    function setClickTaleTags() {
+    var campaign;
+    var campaignName;
+    var elementName;
+    var variantName;
+        for (campaignName in mmcore.GenInfo) {
+            if (!mmcore.GenInfo.hasOwnProperty(campaignName)) {
+            continue;
+            }
+
+            campaign = mmcore.GenInfo[campaignName];
+            for (elementName in campaign) {
+                if (!campaign.hasOwnProperty(elementName)) {
+                continue;
+                }
+                /*Set event to include OPC if it was present to stop experience polution*/
+                if (mmcore.GetCookie('opc.enabled') || mmcore.GetCookie('cfgid')) {
+                variantName = campaign[elementName];
+                recording.tags.push(campaignName + ' | ' + elementName + '=' + variantName + '-OPC');
+                } else {
+                variantName = campaign[elementName];
+                recording.tags.push(campaignName + ' | ' + elementName + '=' + variantName); 
+                }
+            }
+        }
+    };
+
+    /* Send Data to ClickTale. */
+    function sendToClickTale() {
+        while (recording.tags.length) {
+        ClickTaleTag(recording.tags.shift());
+        }
+
+        recording.cleanUp();
+    };
+
+    /* Set ClickTale fields and tags when ClickTale arrives. */
+
+    (function checkForClickTaleArrival() {
+        if (typeof ClickTaleField !== 'function' || typeof ClickTaleTag !== 'function') {
+        var mm_ct_loop_count = 0;
+        /* Keep waiting for ClickTale arrival only if the document is not completely loaded. */
+            var mm_ct_timer = setInterval(function() {
+            mm_ct_loop_count++;
+                if (mm_ct_loop_count < 26) {
+                    if (typeof ClickTaleField === 'function' && typeof ClickTaleTag === 'function') { 
+                    clearInterval(mm_ct_timer);
+                    setClickTaleFields();
+                    setClickTaleTags();
+                    sendToClickTale();
+                    }
+                }
+                else {
+                clearInterval(mm_ct_timer); 
+                recording.cleanUp();   
+                }
+            }, 200); 
+        }
+    }());     
+    };
+
+    mmcore.clickTalePageviewSessionRecording = {
+        suspend: function () {
+            recording.checkState();
+
+            recording.numberOfSuspensions += 1;
+        },
+
+        resume: function () {
+            recording.checkState();
+
+            if (!recording.numberOfSuspensions) {
+                return;
+            }
+
+            recording.numberOfSuspensions -= 1;
+            if (recording.numberOfSuspensions) {
+                return;
+            }
+            recording.start();
+        }
+    };
+}());
+}catch(err){mmcore.EH(err);}
+try{
+;(function() {
+    mmcore.waitFor(function () {
+        return  window.jQuery
+    }).then(function () {
+        var elSteps;
+
+        window.jQuery(mmcore).bind('mm_mob_action', function (event, actionType, language, convertedValue, isFirst) {
+            if (actionType === 'start_deposit' && mmcore.GetCookie('mm-flag-reg-comp', 1)) {
+
+                mmcore.SetCookie('mm-reg-complete', 1, 0, true);
+                mmcore.SetCookie('mm-flag-reg-comp', 1, -1, true);
+            }
+
+        });
+        var startRegistration = function () {
+            mmcore.SetCookie('mm-flag-reg-comp', 1, -1, true);
+        };
+        var logicForRegComp = function () {
+            mmcore.SetCookie('mm-flag-reg-comp', 1, -1, true);
+            mmcore.waitFor(function () {
+                return (jQuery('#registrationForm').size())
+            }).then(function () {
+                jQuery('#registrationForm').on('submit', function () {
+                    mmcore.SetCookie('mm-flag-reg-comp', 1, 0, true);
+                });
+            });
+        };
+        mmcore.waitFor(function () {
+            return (jQuery('.step').size())
+        }).then(function () {
+            if ((elSteps = jQuery('.step:first')).size() && elSteps.hasClass('active')) {
+                startRegistration();
+            } else if ((elSteps = jQuery('.step:last')).size() && elSteps.hasClass('active')) {
+                logicForRegComp();
+            }
+        });
+
+
+    });
+}());
+}catch(err){mmcore.EH(err);}
+try{
+mmcore.AddDocLoadHandler(function(){
+    var usernameElement = document.querySelector('#auth-form-container span a[href*="bets"]'); 
+    if(usernameElement != null){
+        var username = usernameElement.innerHTML;
+        if (typeof (username) !== "undefined" && username !== "")   {
+            mmcore.SetVisitorID(username);
+            mmcore.SetPageID('MI-ExternalVisitorId');
+            mmcore._async = true;
+            mmcore.CGRequest();
+        }
+    }
+});
+}catch(err){mmcore.EH(err);}
+try{
+mmcore.AddDocLoadHandler(function () {
+    "use strict";
+    var balanceElement,
+        pointsElement,
+        points,
+        balance;
+    balanceElement = document.querySelector('#user-state-account-balance');
+    pointsElement = document.querySelector('#user-state-loyalty a');
+    if (pointsElement !== null) {
+        points = pointsElement.innerHTML.match(/[0-9.]*/)[0];
+        if (typeof(points) !== "undefined" && points !== "") {
+            mmcore.SetPersCriterion('MI-PointsCount', points);
+        }
+    }
+    if (balanceElement !== null) {
+        balance = balanceElement.innerHTML.match(/[0-9.]*/)[0];
+        if (typeof(balance) !== "undefined" && balance !== "") {
+            mmcore.SetPersCriterion('MI-Balance', balance);
+        }
+    }
+    if(balance && points){
+        mmcore.SetPageID('point_and_balance');
+        mmcore._async = true;
+        mmcore.CGRequest();
+    }
+});
+}catch(err){mmcore.EH(err);}
+try{
+(function() {
+    "use strict";
+	if (mmcore.GetCookie('bwinvar').match(/[{}]/g)) mmcore.SetCookie('bwinvar', '', -1);
+	
+	var campaigns = {
+			'001' : {
+				master : mmcore.GenInfo['HPBonus_Master'],
+				campaign_name : mmcore.GenInfo['HPBonus']
+			},
+			'002' : {
+				//master : mmcore.GenInfo['HP Bonus GRE Master'],
+				campaign_name : mmcore.GenInfo['LP Bonus ENG']
+			},
+			'003' : {
+				master : mmcore.GenInfo['HP Bonus GRE Master'],
+				campaign_name : mmcore.GenInfo['HP Bonus GRE']
+			},
+			'005' : {
+				//master : mmcore.GenInfo['Reg_More_Bonus'],
+				campaign_name : mmcore.GenInfo['Reg_More_Bonus']
+			},
+			'004' : {
+				master : mmcore.GenInfo['Registration_Master'],
+				campaign_name : mmcore.GenInfo['Registration']
+			},
+			'004DE' : {
+				master : mmcore.GenInfo['Register_Master_DE'],
+				campaign_name : mmcore.GenInfo['Registration_DE']
+			},
+			'004RU' : {
+				master : mmcore.GenInfo['Register_Master_RU'],
+				campaign_name : mmcore.GenInfo['Registration_RU']
+			},
+			'009' : {
+				master : mmcore.GenInfo['Master_Bwin_Splash'],
+				campaign_name : mmcore.GenInfo['T9_Bwin_Splash_Page']
+			},
+            '008' : {
+				//master : mmcore.GenInfo['Master_Bwin_Splash'],
+				campaign_name : mmcore.GenInfo['Test8_PPC_LP_DE']
+			},
+            '012' : {
+				//master : mmcore.GenInfo['Master_Bwin_Splash'],
+				campaign_name : mmcore.GenInfo['T12_RegistrationUSC']
+			},
+            '302' : {
+				master : mmcore.GenInfo['T1302SplashBfrMaster'],
+				campaign_name : mmcore.GenInfo['T1302_SplashBFR']
+			},
+            '303' : {
+				master : mmcore.GenInfo['T1303ClubMaster'],
+				campaign_name : mmcore.GenInfo['T1303ClubOfChampions']
+			},
+			'1307' : {
+				campaign_name : mmcore.GenInfo['T1307_Reg_Box_ES']
+			},
+			'1308' : {
+				campaign_name : mmcore.GenInfo['T1308_Reg_Box_COM']
+			},
+			'1310' : {
+				campaign_name : mmcore.GenInfo['T1310_Registration']
+			},
+            '1306' : {
+                campaign_name : mmcore.GenInfo['T1306_Mobile_Nav_A'],
+                dependency: {
+                    navigation: {
+                        'default': 'A1',
+                        bwinnav2: 'A2'
+                    }
+                }
+            },
+         	'1312' : {
+                campaign_name : mmcore.GenInfo['T1312_MOB_Betslip'],
+                dependency: {
+                    depositcta: {
+                        'default': 'A1',
+                        button: 'A2',
+                        text: 'A3'
+                    },
+                    redirect: { 
+                        'default': 'B1',
+                        deposit: 'B2'
+                    }
+                }
+            },
+            '1314' : {
+                // master : mmcore.GenInfo['T1314_RegPhoneF_M'],
+                campaign_name : mmcore.GenInfo['T1314_RegPhoneField']
+            },
+            '1315' : {
+                campaign_name : mmcore.GenInfo['T1315_MOB_Reg'],
+                dependency: {
+                    registration: {
+                        'default': 'A1',
+                        'new': 'A2'
+                    }
+                }
+            },
+			'T1318' : {
+				campaign_name : mmcore.GenInfo['T1318_Casino_Message'],
+				dependency: {
+					messaging: {
+						'default': 'A1',
+						'text_1': 'A2',
+						'text_2': 'A3'
+					},
+					carousel: {
+						'default': 'B1',
+						'removed': 'B2'
+					}
+				}
+			},
+			'T1324' : {
+				campaign_name : mmcore.GenInfo['T1324_MOB_DepositCTA'],
+				dependency: {
+					navigation: {
+						'default': 'A1',
+						'new_left': 'A2',
+						'new_right': 'A3'
+					}
+				}
+			},
+			'M3' : {
+				campaign_name : mmcore.GenInfo['M3_Logout_Monitoring'],
+				dependency: {
+					element1: {
+						'default': 'A1'
+					}
+				}
+			},
+			'T1321' : {
+				campaign_name : mmcore.GenInfo['T1321_Logout_Page'],
+				dependency: {
+                    logoutpage: {
+						'default': 'A1',
+						'home': 'A2',
+						'casino': 'A3',
+						'pokerpromo': 'A4',
+						'pokerhome': 'A5',
+						'mobile': 'A6'
+					}
+				}
+			},
+			'T1329' : {
+				campaign_name : mmcore.GenInfo['T1329_Live_Games_V1'],
+				dependency: {
+					homepage: {
+						'default': 'A1',
+						'live': 'A2',
+						'static': 'A3'
+					}
+				}
+			},
+			'T1332' : {
+				campaign_name : mmcore.GenInfo['T1332_Live_Games_V1'],
+				dependency: {
+					homepage: {
+						'default': 'A1',
+						'live': 'A2',
+						'static': 'A3'
+					}
+				}
+			},
+            'T1327' : {
+                campaign_name : mmcore.GenInfo['T1327_Reg_Box_v2'],
+                dependency: {
+                    reg_box: {
+                        'default': 'A1',
+                        'fourtr': 'A2',
+                        'fourlr': 'A3',
+                        'new4tr': 'A4',
+                        'new4lr': 'A5'
+                    }
+                }
+            },
+            'T1323' : {
+                campaign_name : mmcore.GenInfo['T1323_Deposit_Popup'],
+                dependency: {
+                    balance: {
+                        'default': 'A1',
+                        'popup': 'A2'
+                    }
+                }
+            },
+            'T1331' : {
+                campaign_name : mmcore.GenInfo['T1331_Casino_HPv3'],
+                dependency: {
+                    homepage: {
+                        'default': 'A1',
+                        'targeted': 'A2'
+                    }
+                }
+            },
+            'T1326' : {
+                campaign_name : mmcore.GenInfo['T1326_Deposit_Teaser'],
+                dependency: {
+                    homepage: {
+                        'default': 'A1',
+                        'teasermidd': 'A2',
+                        'teasertop': 'A3'
+                    }
+                }
+            },
+			'T1328': {
+				campaign_name : mmcore.GenInfo['T1328MOBDepPrompt'],
+				dependency: {
+					'a_navigation': {
+						'default': 'A1',
+						'a1_popup': 'A2'
+					}
+				}
+			},
+			'T1335': {
+				campaign_name : mmcore.GenInfo['T1335CrossSell'],
+				dependency: {
+					'a_sports': {
+						'default': 'A1',
+						'a1_top': 'A2',
+						'a2_left': 'A3',
+						'a3_right': 'A4'
+					}
+				}
+			},
+            'T1339': {
+                campaign_name : mmcore.GenInfo['T1339_HP_Deposit_Prompt'],
+                dependency: {
+                    'a_balance': {
+                        'default': 'A1',
+                        'a2_popup': 'A2'
+                    }
+                }
+            },
+            'T1342': {
+                campaign_name : mmcore.GenInfo['T1342_Reg_Box_v2'],
+                dependency: {
+                    'a_homepage': {
+                        'default': 'A1',
+                        'a2_top': 'A2',
+                        'a3_middle': 'A3',
+                        'a4_splash': 'A4'
+                    }
+                }
+            },
+            'T1341': {
+                campaign_name : mmcore.GenInfo['T1341_Bonus_Layer'],
+                dependency: {
+                    'a_bonus': {
+                        'default': 'A1',
+                        'a2_redesign': 'A2'
+                    }
+                }
+            },
+			'T1340': {
+				campaign_name : mmcore.GenInfo['T1340_Registration_Redesign'],
+				dependency: {
+					'a_registrat': {
+						'default': 'A1',
+						'a1_columns': 'A2',
+						'a2_steps': 'A3'
+					}
+				}
+			}
+		},
+		
+		p, campaign, campaign_id, m, _c, i,j,
+		vars='', cn, is_found, var_name,
+        dependency = '',
+		cookie = mmcore.GetCookie('bwinvar'),
+		campaigns_from_cookie = cookie.split(';'),
+		final_arr = [], page_vars = [],
+		splitter = '',
+		campaigns_from_cookieS = '';
+	
+	for (p in campaigns) {
+		campaign = campaigns[p];
+		campaign_id = p;
+		is_found = false;
+		if (campaign.master || campaign.campaign_name) page_vars.push(campaign_id);
+		
+		if (campaign.master) {
+			for (m in campaign.master) {
+				if (campaign.master[m].toLowerCase() == 'default') {
+					vars = campaign_id+'defaultM';
+					is_found = true;
+				}
+			}
+		}
+		if (campaign.campaign_name) {
+			if (!is_found) {
+                if (vars.length) vars += ';';
+				for (cn in campaign.campaign_name) {
+					if (campaign.dependency) {
+                        dependency += campaign.dependency[cn][campaign.campaign_name[cn].toLowerCase()];
+                    } else {
+                        var_name = campaign.campaign_name[cn].toLowerCase();
+                        vars+= campaign_id+var_name+',';
+                    }
+				}
+                if (dependency) {
+                    vars += campaign_id + '_' + dependency;
+                    dependency = '';
+                }
+				vars = vars.replace(/\,$/g, '');
+			}
+		}
+	}
+
+	for (var i=0;i<campaigns_from_cookie.length;i++) {
+		_c = campaigns_from_cookie[i];
+		var is_valid = true;
+		for (var j=0;j<page_vars.length;j++) {
+			if (_c && _c.indexOf(page_vars[j])>-1) {
+				is_valid = false;
+			}			
+		}
+		if(is_valid && _c) final_arr.push(_c);
+	}
+
+	if (final_arr.length) {
+		campaigns_from_cookieS = ';'+final_arr.join(';');
+	}
+
+	if (vars) {
+		cookie = vars + campaigns_from_cookieS;
+		mmcore.SetCookie('bwinvar', cookie, 365);	
+	}
+})(); 
+}catch(err){mmcore.EH(err);}
+try{
+window.jQuery && window.jQuery(function () {
+    if (window.jQuery('#account-wrapper').size()) {
+        function SetCustomAction (conf) {
+            var name = conf.name,
+                val = conf.val || 1,
+                attr = conf.attr || '',
+                async = conf.async,
+                callback = conf.callback || '';
+            if (async) {
+                mmcore._async = true;
+                mmcore.SetPageID('mmevent.js');
+                mmcore.SetAction(name, val, attr || '');
+                mmcore.CGRequest(callback);
+            } else {
+                if (!SetCustomAction[name]) {
+                    mmcore.$Action(name, val, attr || '');
+                    SetCustomAction[name] = true;
+                }
+            }
+        }
+        // handle the action 'Right_Nav_M2'
+        jQuery('.myCashier-side-content-links').on('click', 'a.contentlinks', function () {
+            SetCustomAction({
+                async:true,
+                name:'Right_Nav_M2',
+                attr:(jQuery(this).html().match(/deposit/i) ? 'Deposit Limits' : 'Ex. Rate')
+            });
+        });
+
+        jQuery('#selCountryList').on('change', function () {
+            SetCustomAction({
+                async:false,
+                name:'Right_Nav_M2',
+                attr:'Country'
+            });
+        });
+    }
+});
+
+}catch(err){mmcore.EH(err);}
+try{
+;(function () {
+    var extractPrices = function (a) {
+        var b = [];
+        a.replace(/(\d{1,3}(?:\D?\d{3})*(?:\D(\d{0,2})|))(?:\D|$)/gm,function(c,a,d){c=!d?"00":d.length==1?"0":"";b.push((a.replace(/\D/g,"")+c)*1)});
+        return b[0]
+    };
+    var Checker = {
+        cookie_name: 't1339_visitor_type',
+        pageID: 't1339',
+        request: function (type, languege) {
+            var languageCriteria = {
+                'english': 'English',
+                'português': 'Portuguese',
+                'русский': 'Russian',
+                'deutsch': 'German'
+            };
+            mmcore.SetPageID(this.pageID);
+            mmcore._async = 1;
+            mmcore.SetPersCriterion('Balance_Status', ((type.indexOf('zero') + 1) ? 'Zero' : 'Low'));
+            mmcore.SetPersCriterion('Language', languageCriteria[languege]);
+            mmcore.CGRequest();
+        },
+        checker: function () {
+            var self = this;
+            var start = +(new Date());
+            var addEvent = function  (elem, type, handler) {
+                if (elem.addEventListener) {
+                    elem.addEventListener(type, handler, false);
+                } else {
+                    elem.attachEvent('on' + type, handler);
+                }
+            };
+
+            var initChecking = function () {
+                var wait = setInterval(function () {
+                    if (!!document.getElementById('auth-form-container') && !!document.getElementById('cultureName')) {
+                        var cookie = mmcore.GetCookie(self.cookie_name, 1);
+                        var balanceAccount = document.getElementById('user-state-account-balance');
+                        var language = document.getElementById('cultureName').value.toLowerCase();
+                        var targetLang = 'english,português,русский,deutsch';
+                        var type = false;
+                        var balance;
+
+                        if ((targetLang.indexOf(language) !== -1) && balanceAccount && balanceAccount.innerHTML
+                            && !mmcore.GetCookie('mm_reg_compl', true)) {
+
+                            balance = extractPrices(balanceAccount.innerHTML);
+
+                            if (balanceAccount.innerHTML.indexOf('EUR') !== -1 ||
+                                balanceAccount.innerHTML.indexOf('GBP') !== -1) {
+
+                                if (balance == 0) {
+                                    type = 'zero_t1339';
+                                } else if (balance < 500) {
+                                    type = 'low_t1339';
+                                }
+                            }
+                            if (balanceAccount.innerHTML.indexOf('RUB') !== -1) {
+                                if (balance == 0) {
+                                    type = 'zero_t1339';
+                                } else if (balance < 30000) {
+                                    type = 'low_t1339';
+                                }
+                            }
+                            if (type && cookie.indexOf(type) === -1) {
+                                mmcore.SetCookie(self.cookie_name, cookie + type, 0, 1);
+
+                                self.request(type, language);
+                                mmcore.t1339 = {
+                                    'lang': language,
+                                    'type': type
+                                }
+                            }
+                        }
+                        clearInterval(wait);
+                    }
+                }, 40);
+                mmcore.AddDocLoadHandler(function () {
+                    setTimeout(function () {
+                        clearInterval(wait);
+                    }, 1000);
+                });
+            };
+
+            if (mmcore.GetCookie('mm-t1339-not-bonus-user', 1)) {
+                initChecking();
+            } else {
+                addEvent(window, 'hashchange', function (e) {
+                    var hash = e.newURL || window.location.hash;
+
+                    if (hash && decodeURIComponent(hash).indexOf('action=close') + 1 && !mmcore.GetCookie('mm-t1339-not-bonus-user', 1)) {
+                        mmcore.SetCookie('mm-t1339-not-bonus-user', 1, 0, 1);
+                        initChecking();
+                    }
+                }, false);
+            }
+
+            (function waitejQuery() {
+                if (window.jQuery) {
+                    jQuery(document).ready(function () {
+                        setTimeout(function () {
+                            var messageLink = jQuery('#post-login-reminder a');
+                            var postLofFrame = jQuery('#postlogin-frame');
+                            var userId;
+
+                            userId = jQuery('#auth-form-container').find('span').filter(function() {
+                                return !$(this).attr("id") && !$(this).attr("class")
+                            }).text();
+
+                            if(postLofFrame.size()) {
+                                mmcore.SetCookie('mt1339-bonus', userId, 0, true);
+                            }
+                            if (!postLofFrame.size() && messageLink.size() && messageLink[0].href) {
+                                if(mmcore.GetCookie('mt1339-bonus', true) === userId){
+                                    return;
+                                }
+                                mmcore.SetCookie('mt1339-bonus', userId, 0, true);
+                                jQuery.bwin.postlogin({
+                                    url: messageLink[0].href
+                                });
+                            } else {
+                                mmcore.SetCookie('mm-t1339-not-bonus-user', -1, -1, 1);
+                            }
+                        }, 0);
+                    });        
+                } else if (+(new Date()) - start < 5000) {
+                    setTimeout(waitejQuery, 40);
+                }    
+            }());
+        
+        },
+        init: function () {
+            this.checker();
+        }
+    };
+    Checker.init();
+}());
+}catch(err){mmcore.EH(err);}
+if(typeof mmcore._callback=='object'&&typeof mmcore._callback[1]=='function'){try{mmcore._callback[1]();}catch(err){mmcore.EH(err);}
+finally{mmcore._callback[1]=null;}}
+})();
