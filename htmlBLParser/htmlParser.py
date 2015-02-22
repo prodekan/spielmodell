@@ -1,3 +1,5 @@
+from debian.debtags import DB
+
 __author__ = 'selver'
 
 import glob
@@ -6,7 +8,7 @@ from html.parser import HTMLParser
 import urllib
 
 import wget
-
+from DBHandler import dbHandler
 import requests
 
 class pyHTMLParse(HTMLParser):
@@ -22,6 +24,7 @@ class pyHTMLParse(HTMLParser):
     gotcha = False
     gotchaPlayday = False
     outputContent = ''
+    db = dbHandler('localhost','root','selver365','spielmodell')
     def __init__(self, saison = '0/0'):
         # initialize the base class
         HTMLParser.__init__(self)
@@ -74,6 +77,7 @@ class pyHTMLParse(HTMLParser):
             self.g2_first_half = str(data)[colonIdx+1:rbracketIdx]
             self.gotcha = False
             self.outputContent += self.composeLine()
+            self.insertRecordIntoDB()
 
 
     def handle_startendtag(self, tag, attrs):
@@ -87,10 +91,14 @@ class pyHTMLParse(HTMLParser):
         line = ','.join([self.playday, self.team1, self.team2, self.g1, self.g2, self.g1_first_half, self.g2_first_half, self.season, '\n'])
         return line
 
+    def currList(self):
+        return [self.playday, self.team1, self.team2, self.g1, self.g2, self.g1_first_half, self.g2_first_half, self.season]
+
     def getFinal(self):
         return self.outputContent
 
-    def insertRecordIntoDB(self, list):
+    def insertRecordIntoDB(self):
+        self.db.insertRecordFromList('results', self.currList())
 
 
 
@@ -114,7 +122,7 @@ def main():
     liga = '2-bundesliga'
     season = '2013-2014'
 
-    for i in range(1,50):
+    for i in range(1,3):
         link = 'http://www.weltfussball.de/alle_spiele/'
         print(season)
         s1 = int(season[:4])
@@ -144,8 +152,8 @@ def main():
         x1 = f.find(' ', last_slash)
         x1 = x1 + 1
         x2 = f.find(' ', x1)
-        saison = f[x1:x1+4] + '/' + f[x1+5:x1+9]
-        parser = pyHTMLParse(saison)
+        season = f[x1:x1+4] + '/' + f[x1+5:x1+9]
+        parser = pyHTMLParse(season)
         parser.feed(reader.file_content)
         parser.close()
         outputName = "bundesliga2.csv"
