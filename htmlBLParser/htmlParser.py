@@ -24,11 +24,12 @@ class pyHTMLParse(HTMLParser):
     gotcha = False
     gotchaPlayday = False
     outputContent = ''
-    db = dbHandler('localhost','root','selver365','spielmodell')
+    db = None
     def __init__(self, saison = '0/0'):
         # initialize the base class
         HTMLParser.__init__(self)
         self.season = saison
+        self.db = dbHandler('localhost','root','selver365','spielmodell')
 
     def read(self, data):
         # clear the current output before re-use
@@ -41,7 +42,7 @@ class pyHTMLParse(HTMLParser):
     def handle_starttag(self, tag, attrs):
 
         if len(attrs) > 1 and len(attrs[0]) > 1:
-            if '/spielbericht/bundesliga' in str(attrs[0][1]):
+            if '/spielbericht/2-bundesliga' in str(attrs[0][1]):
                 self.gotcha = True
                 #print('-------------->', attrs[1][1])
                 idx = str(attrs[1][1]).find('Spielschema', 0)
@@ -109,7 +110,7 @@ class ReadHtml:
     fd = 0
     def __init__(self, file):
         self.file_location = file
-        print('setting file location ', self.file_location)
+        print(' file location ', self.file_location)
 
     def parse(self):
         self.fd = open(self.file_location, 'r')
@@ -122,7 +123,8 @@ def main():
     liga = '2-bundesliga'
     season = '2013-2014'
 
-    for i in range(1,3):
+    #TODO: This is an example range
+    for i in range(1,1):
         link = 'http://www.weltfussball.de/alle_spiele/'
         print(season)
         s1 = int(season[:4])

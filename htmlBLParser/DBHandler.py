@@ -17,6 +17,7 @@ class dbCacheHandler:
             try:
                 self.cursor.execute('desc ' + tablename)
                 self.tables[tablename] = self.cursor.fetchall()
+                print(type(self.tables[tablename]))
             except RuntimeError:
                 print('Error ' + tablename)
                 return ''
@@ -24,7 +25,6 @@ class dbCacheHandler:
 
 class dbHandler:
     connection = None
-    cursor = None
     #TODO: make this configurable
     host='localhost'
     user ='root'
@@ -38,7 +38,7 @@ class dbHandler:
 
         except pymysql.DatabaseError:
             print('Error connecting to database')
-        self.cursor = self.connection.cursor()
+
         self.cacheHandler = dbCacheHandler(self.connection)
 
     def __init__(self, h, u, p, db):
@@ -47,7 +47,6 @@ class dbHandler:
 
         except pymysql.DatabaseError:
             print('Error connecting to database')
-        self.cursor = self.connection.cursor()
         self.cacheHandler = dbCacheHandler(self.connection)
 
     def insertRecordFromList(self, tablename, list):
@@ -55,21 +54,26 @@ class dbHandler:
         print(tablename, list)
         if l == 0 or len(tablename) == 0:
             return 0
-        statement = 'insert into ' + tablename + ' '
+        statement = 'insert into ' + tablename + ' ('
         for r in self.cacheHandler.tableColumns(tablename):
             statement += r[0] + ','
-        statement += ' values('
+        statement = statement[:-1]
+        statement += ') values('
         for r in list:
-            statement += r + ','
+            if 'varchar' in r:
+                statement += r + ','
+            else:
+                statement += '\'' + r + '\','
         statement += ')'
         print('statement: ', statement)
         ret = None
         try:
-            ret = self.cursor.execute(statement)
+            cur = self.connection.cursor()
+            ret = cur.execute(statement)
+            cur.close()
         except RuntimeError:
             print('Error exec statment', statement)
         return ret
 
     def __del__(self):
-        self.cursor.close()
         self.connection.close()
